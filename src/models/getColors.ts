@@ -3,9 +3,9 @@ export interface ColorSource {
   color: string;
 }
 
-type ColorResponse = Promise<{
+interface ColorResponse {
   data: ColorSource[];
-}>;
+}
 
 function getRandomColor() {
   const r = Math.floor(Math.random() * 256);
@@ -15,7 +15,7 @@ function getRandomColor() {
   return `rgb(${r},${g},${b})`;
 }
 
-export default function getColors(): ColorResponse {
+export default function getColors(): Promise<ColorResponse> {
   return new Promise(resolve => {
     resolve({
       data: [
